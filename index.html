@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chúc thi tốt 🍀</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #e6fff2, #ccffe6);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    border-top: 6px solid #2ecc71;
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+h1 {
+    color: #2ecc71;
+}
+
+p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+button {
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 20px rgba(46,204,113,0.6);
+    transform: translateY(-2px);
+}
+
+/* 🍀 Cỏ 4 lá */
+.leaf {
+    position: absolute;
+    font-size: 22px;
+    animation: leafFall linear infinite;
+}
+
+@keyframes leafFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 🎉 Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1 id="title">Hộp may mắn 🍀</h1>
+    <button id="openBtn">Mở ngay</button>
+    <p id="message">
+        Chúc em gái của anh bước vào phòng thi với thật nhiều may mắn 🍀,
+        giữ vững sự tự tin và bình tĩnh. Những gì em đã cố gắng chắc chắn sẽ được đền đáp xứng đáng.
+        Làm bài thật tốt nhé! 💚
+    </p>
+</div>
+
+<!-- 🔊 Nhạc -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const btn = document.getElementById('openBtn');
+const msg = document.getElementById('message');
+const music = document.getElementById('music');
+
+btn.addEventListener('click', () => {
+    msg.classList.add('show');
+    btn.style.display = 'none';
+    document.getElementById('title').innerText = "Thi tốt nhé 🍀✨";
+
+    music.play();
+
+    createLeaves();
+    createConfetti();
+});
+
+/* 🍀 Cỏ 4 lá bay */
+function createLeaves() {
+    setInterval(() => {
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+        leaf.innerText = '🍀';
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.fontSize = (18 + Math.random() * 20) + 'px';
+        leaf.style.animationDuration = (3 + Math.random() * 3) + 's';
+        document.body.appendChild(leaf);
+
+        setTimeout(() => leaf.remove(), 6000);
+    }, 300);
+}
+
+/* 🎉 Confetti */
+function createConfetti() {
+    for (let i = 0; i < 80; i++) {
+        const conf = document.createElement('div');
+        conf.classList.add('confetti');
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.background = `hsl(${Math.random()*120 + 100},70%,50%)`;
+        document.body.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
